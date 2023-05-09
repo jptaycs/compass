@@ -1,12 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid hero-section d-flex align-items-center">
-    <div class="col-4 text-center m-auto bg-black bg-opacity-50 text-white p-5 ">
-        <h1 class="mb-4">Our dedication to sustainability</h1>
-        <p class="mb-5">Lorem ipsum dolor sit amet consectetur. Commodo pulvinar tortor nunc lectus. Vitae vitae tortor urna sodales mi. </p>
-        <button class="btn-dark-green">Shop Now</button>
-    </div>
+<div class="container-fluid hero-section ">
+    <div class="col-7 text-center m-auto text-white p-5 ">
+        <form class="searchbtn btn-dark-green">Search here</form>
+        </div>
+        <div class="grid-container">
+    <div class="box box1 text-center  "><img src="img/Luzon.jpg" alt="Luzon"></div>
+    <div class="Luzon">LUZON</div>
+    <div class="box box2"><img src="img/Visayas.jpg" alt="Visayas"></div>
+    <div class="Visayas">VISAYAS</div>
+    <div class="box box3"><img src="img/Mindanao.jpg" alt="Mindanao"></div>
+    <div class="Mindanao">MINDANAO</div>
+</div>    
+
+
+</div>
+
+</div>
 </div>
 <x-product-list :products="$products" :admin="$admin"></x-product-list>
 @endsection

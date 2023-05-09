@@ -3,7 +3,7 @@
 <div>
     <div class="container-fluid p-5">
         <div class="col-4 mx-auto p-4  border border-success border-2">
-            <h4 class="text-uppercase text-center">Add Product</h4>
+            <h4 class="text-uppercase text-center">Add Package</h4>
             <form method="POST" action="{{route('store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-2">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class=" mt-5">
-                    <button class="btn-dark-green ">Add Product</button>
+                    <button class="btn-dark-green ">Add Package</button>
                 </div>
             </form>
         </div>

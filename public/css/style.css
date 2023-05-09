@@ -1,29 +1,146 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&family=Vidaloka&display=swap');
 body{
-    background-color: #E5D9B6;
+    background-color: #DAD7CD;
     font-family: 'Inter', sans-serif;
 }
-h1,h2,h3,h4,h5,h6{
-    font-family: 'Playfair Display', serif;
+.navbar-nav{
+    gap: 30px;
+    font-size: 20px;
+ 
 }
 .navbar-brand{
     font-family: 'Playfair Display', serif;
-    color: #285430;
+    color: #11324D;
+    font-size: 40px;
+   
+    padding-left: 0px;
 }
 .navbar-nav .active{
-    border-bottom: #285430 solid 3px;
+    border-bottom: #344E41 solid 3px;
+}
+a.nav-link{
+    color: #11324D;
+    font-family: 'Playfair Display', serif;
 }
 .hero-section{
-    background: url("../img/shirt.jpg") no-repeat;
+    background: #344E41 ;
     height: 100vh;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
-.btn-dark-green{
+.searchbtn{
     background-color: #285430;
     color: white;
     text-transform: uppercase;
     border: none;
-    padding: 10px 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+.editbtn{
+    background-color: #285430;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+   padding: 8px;
+}
+.addbtn{
+    background-color: #285430;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+   padding: 8px;
+}
+.bookbtn{
+    background-color: #285430;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+   padding: 15px;
+}
+.grid-container {
+    display: grid;
+    height: 350px;
+    align-content: center;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+    padding: 10px;
+  }
+ .box1 img {
+    padding-top: 60px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.box2 img {
+    object-fit: cover;
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+}
+.box3 img {
+    object-fit: cover;
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+}
+.Luzon {
+    font-family: 'Playfair Display', serif;
+    padding-top: 100px;
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    top: 40%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+  }
+  .Visayas {
+    font-family: 'Playfair Display', serif;
+    padding-top: 100px;
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .Mindanao {
+    font-family: 'Playfair Display', serif;
+    padding-top: 100px;
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    top: 40%;
+    left: 83%;
+    transform: translate(-50%, -50%);
+  }
+.travelTips{
+    color: white;
+    justify-content: center;
+    align-items: center;
+   
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    background: #344E41 ;
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 100px;
+    font-size: 20px;
+    padding-top: 20px;
+} 
+.packagess{
+    background: #344E41 ;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+}
+.card-body{
+    color: black;
+}
+  

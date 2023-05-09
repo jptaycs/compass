@@ -1,6 +1,7 @@
+<div class="packagess">
 <div class="container-fluid py-5">
     <div class="col-10 mx-auto">
-        <h1 class="text-center">Our Products</h1>
+        <h1 class="text-center">Vacation Packages</h1>
         <div class="text-center my-4">
             {{$slot}}
         </div>
@@ -13,7 +14,7 @@
                     <p class="card-text">P{{$product['price']}}</p>
                     @if($admin)
                     <div class="d-flex gap-2">
-<a href="/shop/edit/{{$product['id']}}" class="btn-dark-green text-decoration-none ">Edit</a>
+<a href="/shop/edit/{{$product['id']}}" class="editbtn btn-dark-green text-decoration-none ">Edit</a>
 <form action="{{route('delete', ['id' => $product['id']])}}" method="post">
 @csrf
 @method("DELETE")
@@ -21,7 +22,7 @@
 </form>
 </div>
 @else
-<a href="#" class="btn-dark-green text-decoration-none">Buy now</a>
+<a href="#" class="bookbtn btn-dark-green text-decoration-none">Book now!</a>
 @endif
 
                 </div>
@@ -29,4 +30,5 @@
             @endforeach
         </div>
     </div>
+</div>
 </div>
