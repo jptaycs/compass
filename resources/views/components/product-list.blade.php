@@ -22,7 +22,7 @@
 </form>
 </div>
 @else
-<a href="#" class="bookbtn btn-dark-green text-decoration-none">Book now!</a>
+<a href="/booking" class="bookbtn btn-dark-green text-decoration-none">Book now!</a>
 @endif
 
                 </div>

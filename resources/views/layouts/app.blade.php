@@ -35,9 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <div class="navbar-nav ms-auto navbar ">
-                        <li class="nav-item "><a href="#" class="nav-link {{request()->is('Trips') ? 'active' : ''}}">Trips</a></li>
-                        <li class="nav-item "><a href="#" class="nav-link {{request()->is('Flights') ? 'active' : ''}}">Flights</a></li>
-                        <li class="nav-item "><a href="#" class="nav-link {{request()->is('Hotels') ? 'active' : ''}}">Hotels</a></li>
+                        <li class="nav-item "><a href="/booking" class="nav-link {{request()->is('Booking') ? 'active' : ''}}">Booking</a></li>
                         <li class="nav-item "><a href="/shop" class="nav-link {{request()->is('Packages') ? 'active' : ''}}">Packages</a></li>
                         <li class="nav-item "><a href="/travelTips" class="nav-link {{request()->is('Travel Tips') ? 'active' : ''}}">Travel Tips</a></li>
                         <li class="nav-item  "><a href="/" class="nav-link {{request()->is('/') ? 'active' : ''}}">Home</a></li>              

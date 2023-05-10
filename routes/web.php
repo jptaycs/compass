@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,10 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ProductController::class, 'index'])->name('shop');
 Route::get('/travelTips', [App\Http\Controllers\travelTipsController::class, 'index'])->name('travelTips');
+Route::get('/booking', [App\Http\Controllers\BookingController::class, 'index'])->name('booking');
 Route::get('/shop/add', [ProductController::class, 'create'])->name('add');
 Route::post('/shop/store', [ProductController::class, 'store'])->name('store');
 Route::get('/shop/edit/{id}', [ProductController::class, 'edit'])->name('edit');
 Route::patch('/shop/update/{id}', [ProductController::class, 'update'])->name('update');
 Route::delete('/shop/delete/{id}', [ProductController::class, 'destroy'])->name('delete');
+
