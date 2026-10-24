@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -41,9 +43,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorizeAdmin();
         return view('addProduct');
-        
     }
 
     /**
@@ -54,17 +55,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // get the filename of image uploaded
-        $filename = $request->img->getClientOriginalName();
-        // store in public folder
-        $request->img->move(public_path('img'), $filename);
+        $this->authorizeAdmin();
+        $data = $request->validate([
+            'product_name' => ['required', 'string', 'max:255'],
+            'product_price' => ['required', 'numeric', 'min:0'],
+            'img' => self::IMAGE_RULES,
+        ]);
 
-
-        $product = Product::create([
-            'product_name' => $request['product_name'],
-            'price' => $request['product_price'],
-            'img' => $filename,
-            'user_id' => Auth::id()
+        Product::create([
+            'product_name' => $data['product_name'],
+            'price' => $data['product_price'],
+            'img' => $this->saveImage($request->file('img')),
+            'user_id' => Auth::id(),
         ]);
         return redirect('shop');
     }
@@ -89,7 +91,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = $this->ownedProduct($id);
         return view('editProduct', ['product' => $product]);
     }
 
@@ -102,19 +104,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = $this->ownedProduct($id);
+        $data = $request->validate([
+            'product_name' => ['required', 'string', 'max:255'],
+            'product_price' => ['required', 'numeric', 'min:0'],
+            'img' => ['nullable', ...array_slice(self::IMAGE_RULES, 1)],
+        ]);
+
+        $product->product_name = $data['product_name'];
+        $product->price = $data['product_price'];
         if ($request->hasFile('img')) {
-            $filename = $request->photo->getClientOriginalName();
-            $request->img->move(public_path('img'), $filename);
-        } else {
-            $filename = $product->img;
+            $product->img = $this->saveImage($request->file('img'));
         }
-        $product->product_name = $request->product_name;
-        $product->price = $request->product_price;
-        $product->img = $filename;
         $product->save();
         return redirect("shop");
-
     }
 
     /**
@@ -125,13 +128,33 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-
-
-        $product = Product::find($id);
-
-
-        $product->delete();
+        $this->ownedProduct($id)->delete();
         return redirect("shop");
+    }
+
+    // Only images, checked by content (not just the name), at most 5 MB. Saved under a random name with the extension of
+    // the detected type, so a client-chosen name like "shell.php" or "../x" can never reach the web root.
+    private const IMAGE_RULES = ['required', 'file', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:5120'];
+
+    private function saveImage(UploadedFile $file): string
+    {
+        $name = Str::random(40) . '.' . $file->guessExtension();
+        $file->move(public_path('img'), $name);
+        return $name;
+    }
+
+    private function authorizeAdmin(): void
+    {
+        abort_unless(Auth::user()?->isAdmin, 403);
+    }
+
+    // An admin manages only the products they added (the shop page already lists only theirs).
+    private function ownedProduct($id): Product
+    {
+        $this->authorizeAdmin();
+        $product = Product::findOrFail($id);
+        abort_unless($product->user_id === Auth::id(), 403);
+        return $product;
     }
 
 }
